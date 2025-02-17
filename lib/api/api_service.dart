@@ -8,15 +8,18 @@ import 'dart:convert';
 class ApiService {
 
   String? apiUrl = dotenv.env['API_URL'];
-  String? apiUrlProduct = dotenv.env['API_PRODUCT'];
   String? bearerToken = dotenv.env['BEARER_TOKEN'];
   String? apiToken = dotenv.env['API_TOKEN'];
 
   Future<List<Product>> fetchProducts() async {
     final response = await http.get(
-      Uri.parse(apiUrl!),
-      headers: {'Authorization': 'Bearer $bearerToken', 'X-API-TOKEN' : apiToken!},
+      Uri.parse('$apiUrl/products'),
+      headers: {
+        'Authorization': 'Bearer $bearerToken', 
+        'X-API-TOKEN' : apiToken!
+      },
     );
+
     if (response.statusCode == 200) {
       List data = json.decode(response.body)['products'];
       return data.map((json) => Product.fromJson(json)).toList();
@@ -25,7 +28,7 @@ class ApiService {
   }
 
   Future<bool> createProduct(String name, String price, File? imageFile, String shortDescription) async {
-    var request = http.MultipartRequest('POST', Uri.parse(apiUrlProduct!));
+    var request = http.MultipartRequest('POST', Uri.parse('$apiUrl/product'));
     request.headers['Authorization'] = 'Bearer $bearerToken';
     request.headers['X-API-TOKEN'] = apiToken!;
     request.fields['name'] = name;
@@ -42,7 +45,7 @@ class ApiService {
 
   Future<bool> updateProduct(int id, String name, String price, File? imageFile, String shortDescription) async {
     try {
-      var request = http.MultipartRequest('POST', Uri.parse('${apiUrlProduct!}/$id'));
+      var request = http.MultipartRequest('POST', Uri.parse('$apiUrl/product/$id'));
       request.headers['Authorization'] = 'Bearer $bearerToken';
       request.headers['X-API-TOKEN'] = apiToken!;
       request.fields['name'] = name;
@@ -64,21 +67,17 @@ class ApiService {
     }
   }
 
-  Future<bool> findProduct(int id) async {
-    try {
-      var request = http.MultipartRequest('GET', Uri.parse('${apiUrlProduct!}/$id'));
-      request.headers['Authorization'] = 'Bearer $bearerToken';
-      request.headers['X-API-TOKEN'] = apiToken!;
-
-      final response = await request.send();
-
-      if (response.statusCode == 200) {
-        json.decode(response.body);
-        print(response);
+  Future<bool> deleteProduct(int id) async {
+    final response = await http.delete(Uri.parse('$apiUrl/product/$id'),
+      headers: {
+        'Authorization': 'Bearer $bearerToken', 
+        'X-API-TOKEN' : apiToken!
       }
-        return true;
+    );
 
-    } catch (e) {
+    if (response.statusCode == 200) {
+      return response.statusCode == 200;
+    } else {
       return false;
     }
   }

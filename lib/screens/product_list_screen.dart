@@ -72,7 +72,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.network(product.image),
                     Text(product.name, style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w600

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api/models/product.dart';
 import 'package:flutter_api/screens/create_product.dart';
+import 'package:flutter_api/screens/product_list.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'screens/product_list_screen.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Product CRUD',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: ProductListScreen(),
+      home: ProductList(),
       routes: {
         '/create-product' : (context) => ProductFormScreen(),
         '/edit-product': (context) {
