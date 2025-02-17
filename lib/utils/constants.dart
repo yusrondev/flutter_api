@@ -1,0 +1,3 @@
+const String API_URL = 'https://a2aa-120-188-75-223.ngrok-free.app/api'; // Ganti dengan URL API Anda
+const String BEARER_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTczOTY4OTgyMCwiZXhwIjoxNzM5NjkzNDIwLCJuYmYiOjE3Mzk2ODk4MjAsImp0aSI6ImJhblZ2Ujh6U3M3d3lYc2EiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.GVAjrm8ome1UJaoDZgmdPK-O-8nVlJQ9pkOJlnW8ero'; // Ganti dengan token autentikasi Anda
+const String apiToken = 'opCz4FMt3x2HFKetxHExr9p2DsL1rupGJULulAGAj1ohGEC0hP73MW9QixI3';
