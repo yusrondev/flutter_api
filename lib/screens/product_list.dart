@@ -29,8 +29,9 @@ class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: products == [] ? CircularProgressIndicator() : 
+      body: products.isEmpty ? CircularProgressIndicator() : 
       ListView(
+        padding: EdgeInsets.symmetric(horizontal: 14, vertical: 45),
         children: [
           InkWell(
             onTap: () {
@@ -53,6 +54,7 @@ class _ProductListState extends State<ProductList> {
             ),
           ),
           ListView.builder(
+            padding: EdgeInsets.all(0),
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: products.length,
