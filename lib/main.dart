@@ -12,6 +12,8 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   Future<Widget> checkToken() async {
     AuthService authService = AuthService();
     String? token = await authService.getToken();
