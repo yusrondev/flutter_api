@@ -35,7 +35,7 @@ class ApiService {
     return [];
   }
 
-  Future<bool> _sendProductRequest(String url, {int? id, String? name, String? price, String? shortDescription, File? imageFile}) async {
+  Future<bool> _sendProductRequest(String url, {String? name, String? price, String? shortDescription, File? imageFile}) async {
     var request = http.MultipartRequest('POST', Uri.parse(url));
     request.headers.addAll(await _headers);
     request.fields['name'] = name!;
