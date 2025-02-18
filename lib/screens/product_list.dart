@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api/api/api_service.dart';
+import 'package:flutter_api/api/auth_service.dart';
 import 'package:flutter_api/models/product.dart';
+import 'package:flutter_api/screens/login_page.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
@@ -11,6 +13,7 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
   ApiService apiService = ApiService();
+  AuthService authService = AuthService();
   List<Product> products = [];
 
   Future<void> fetchProduct() async {
@@ -26,10 +29,18 @@ class _ProductListState extends State<ProductList> {
     fetchProduct();
   }
 
+  void logout() async {
+    await AuthService().logout();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: products.isEmpty ? CircularProgressIndicator() : 
+      body:
       ListView(
         padding: EdgeInsets.symmetric(horizontal: 14, vertical: 45),
         children: [
@@ -53,6 +64,20 @@ class _ProductListState extends State<ProductList> {
               ),
             ),
           ),
+
+          InkWell(
+            onTap: () => logout(),
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.grey
+              ),
+              child: Center(
+                child: Text("Logout"),
+              ),
+            ),
+          ),
+
           ListView.builder(
             padding: EdgeInsets.all(0),
             shrinkWrap: true,

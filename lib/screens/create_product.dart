@@ -43,7 +43,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
         aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
         uiSettings: [
           AndroidUiSettings(
-            toolbarTitle: 'Cropper',
+            toolbarTitle: 'Sesuaikan Ukuran',
             toolbarColor: Colors.deepOrange,
             toolbarWidgetColor: Colors.white,
             aspectRatioPresets: [
@@ -52,7 +52,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
             ],
           ),
           IOSUiSettings(
-            title: 'Cropper',
+            title: 'Sesuaikan Ukuran',
             aspectRatioPresets: [
               CropAspectRatioPreset.original,
               CropAspectRatioPreset.square,
@@ -96,7 +96,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
         );
       }
 
-      if (success) {
+      if (success == true) {
         // ignore: use_build_context_synchronously
         Navigator.pop(context, true);
       } else {
